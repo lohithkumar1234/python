@@ -33,5 +33,9 @@ average =total/3
 print("\n---------student report---------")
 print("name:", name)
 print("total:", total)
+#passing or fali checker
+mark =int(input("enter mark"))
+print("passed:", mark >=40)
+
 
 
