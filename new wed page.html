@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusConnect | Redefining College Life</title>
+    <style>
+        /* Modern Reset and Design Tokens */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --accent: #f43f5e;
+            --amazon: #ff9900;
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            --glass-bg: rgba(255, 255, 255, 0.07);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            border-bottom: 1px solid var(--glass-border);
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #818cf8, #f43f5e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: #818cf8;
+        }
+
+        /* Main Layout */
+        .container {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 3rem;
+            padding: 3rem 5%;
+            max-width: 1400px;
+            margin: auto;
+            width: 100%;
+            flex: 1;
+        }
+
+        @media (max-width: 968px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Left Side Components */
+        .content-side {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            font-weight: 800;
+        }
+
+        .hero-text span {
+            color: #818cf8;
+        }
+
+        .hero-text p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-top: 0.5rem;
+        }
+
+        /* Added Component: Dynamic College Details Card */
+        .college-details-box {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-left: 4px solid #818cf8;
+            border-radius: 16px;
+            padding: 1.5rem;
+            backdrop-filter: blur(12px);
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .detail-item {
+            background: rgba(0,0,0,0.15);
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+
+        .detail-item label {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 0.2rem;
+        }
+
+        /* New Amazon Shortcut Button Action */
+        .amazon-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background: var(--amazon);
+            color: #111;
+            padding: 0.8rem 1.2rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-top: 1.2rem;
+            width: 100%;
+            transition: opacity 0.3s;
+        }
+
+        .amazon-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Feed Elements */
+        .feed-preview {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 1.5rem;
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+        }
+
+        .feed-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-left: 3px solid var(--accent);
+            padding-left: 1rem;
+            margin: 1rem 0;
+        }
+
+        .feed-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            object-fit: cover;
+            background: #334155;
+        }
+
+        /* Right Side: Authentication Forms */
+        .auth-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(16px);
+            padding: 2.5rem;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .guide-box {
+            background: rgba(244, 63, 94, 0.1);
+            border: 1px dashed rgba(244, 63, 94, 0.4);
+            padding: 0.8rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            color: #fca5a5;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 2rem;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 0.4rem;
+            border-radius: 12px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 0.75rem;
+            cursor: pointer;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: var(--text-main);
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            color: var(--text-main);
+            font-size: 1rem;
+        }
+
+        .image-preview-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .live-preview-circle {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            object-fit: cover;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--glass-border);
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">⚡ CampusConnect</div>
+        <nav>
+            <a href="#" class="active">Home</a>
+            <a href="#">Marketplace</a>
+            <a href="#">Clubs</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        
+        <!-- Left Side View -->
+        <div class="content-side">
+            <div class="hero-text">
+                <h1>College Life. <br><span>Digitized & Integrated.</span></h1>
+                <p>Manage assignments, match with active field research cohorts, and purchase campus requirements instantly.</p>
+            </div>
+
+            <!-- New Area: Active Verified College Profile Dashboard -->
+            <div class="college-details-box">
+                <h3 style="display:flex; justify-content:space-between; align-items:center;">
+                    🎓 Your Registered College Identity
+                    <span style="font-size:0.75rem; color:#818cf8;">● Active Profile</span>
+                </h3>
+                
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <label>University Entity Name</label>
+                        <span id="displayCollegeName">State Technological University</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Assigned Branch / Course</label>
+                        <span id="displayBranch">Computer Science Engineering</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Campus Location</label>
+                        <span id="displayLocation">Main Technical Hub campus</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Current Semester Term</label>
+                        <span id="displaySemester">Semester 4</span>
+                    </div>
+                </div>
+
+                <!-- Strategic Amazon API Search Integration Action -->
+<!-- Character / Student Registration Module Container -->
+<div class="registration-container" style="max-width: 500px; margin: 2rem auto; padding: 2.5rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; color: #fff; font-family: 'Segoe UI', sans-serif; box-shadow: 0 15px 35px rgba(0,0,0,0.3); backdrop-filter: blur(10px);">
+    
+    <h2 style="margin-bottom: 0.5rem; color: #f59e0b; text-align: center;">🎬 Student Character Registration</h2>
+    <p style="font-size: 0.85rem; color: #cbd5e1; text-align: center; margin-bottom: 2rem;">Fill out all drama script fields below to map your profile card variables.</p>
+
+    <!-- Native Registration Form -->
+    <form id="studentRegisterForm" onsubmit="processRegistration(event)">
+        
+        <!-- Row 1: Name & Age -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem;">
+            <div>
+                <label for="formName" style="display: block; font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.5rem;">Full Name</label>
+                <input type="text" id="formName" placeholder="e.g., Anurag Sharma" required style="width: 100%; padding: 0.75rem 1rem; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; color: #fff; font-size: 0.95rem; outline: none;">
+            </div>
+            <div>
+                <label for="formAge" style="display: block; font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.5rem;">Age (Years)</label>
+                <input type="number" id="formAge" placeholder="21" min="16" max="35" required style="width: 100%; padding: 0.75rem 1rem; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; color: #fff; font-size: 0.95rem; outline: none;">
+            </div>
+        </div>
+
+        <!-- Row 2: Class & Section -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem;">
+            <div>
+                <label for="formClass" style="display: block; font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.5rem;">Class / Current Year</label>
+                <input type="text" id="formClass" placeholder="e.g., B.Tech 3rd Year" required style="width: 100%; padding: 0.75rem 1rem; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; color: #fff; font-size: 0.95rem; outline: none;">
+            </div>
+            <div>
+                <label for="formSection" style="display: block; font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.5rem;">Assigned Section</label>
+                <input type="text" id="formSection" placeholder="e.g., Section-B" required style="width: 100%; padding: 0.75rem 1rem; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; color: #fff; font-size: 0.95rem; outline: none;">
+            </div>
+        </div>
+
+        <!-- Row 3: Branch & College Entities -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem;">
+            <div>
+                <label for="formBranch" style="display: block; font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.5rem;">Branch Name</label>
+                <input type="text" id="formBranch" placeholder="e.g., Mechanical" required style="width: 100%; padding: 0.75rem 1rem; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; color: #fff; font-size: 0.95rem; outline: none;">
+            </div>
+            <div>
+                <label for="formCollege" style="display: block; font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.5rem;">College Institute</label>
+                <input type="text" id="formCollege" placeholder="e.g., Mumbai University" required style="width: 100%; padding: 0.75rem 1rem; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; color: #fff; font-size: 0.95rem; outline: none;">
+            </div>
+        </div>
+
+        <!-- Dynamic Avatar Image Link Input Field Block -->
+        <div style="margin-bottom: 2rem;">
+            <label for="formAvatarUrl" style="display: block; font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.5rem;">Profile Image Link (External URL)</label>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <input type="url" id="formAvatarUrl" placeholder="https://example.com" oninput="liveAvatarRefresh(this.value)" style="flex: 1; padding: 0.75rem 1rem; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; color: #fff; font-size: 0.95rem; outline: none;">
+                <img id="formLiveAvatar" src="https://unsplash.com" alt="Avatar Preview" style="width: 45px; height: 45px; border-radius: 50%; border: 2px solid #f59e0b; object-fit: cover; background: #222;">
+            </div>
+        </div>
+
+        <!-- Submit Dispatch Control Action -->
+        <button type="submit" style="width: 100%; padding: 1rem; background: #dc2626; color: #fff; border: none; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='#b91c1c'" onmouseout="this.style.background='#dc2626'">
+            Finalize Profile & Sync Layout ✓
+        </button>
+
+    </form>
+</div>
+
+<!-- Essential Functional JavaScript Interactions -->
+<script>
+    // Live Dynamic Profile Avatar URL parsing logic
+    function liveAvatarRefresh(imageUrlString) {
+        const fallbackDefaultAvatar = "https://unsplash.com";
+        const targetImageDOMElement = document.getElementById('formLiveAvatar');
+        
+        targetImageDOMElement.src = imageUrlString.trim() !== "" ? imageUrlString : fallbackDefaultAvatar;
+    }
+
+    // Handles form data extraction on registration actions
+    function processRegistration(event) {
+        event.preventDefault();
+
+        const profileDataObj = {
+            fullName: document.getElementById('formName').value,
+            age: document.getElementById('formAge').value,
+            className: document.getElementById('formClass').value,
+            sectionName: document.getElementById('formSection').value,
+            branchName: document.getElementById('formBranch').value,
+            collegeName: document.getElementById('formCollege').value
+        };
+
+        console.log("Saving Student Data Variables locally:", profileDataObj);
+        alert(`Congratulations ${profileDataObj.fullName}!\nYour student registration fields are captured successfully.`);
+    }
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Campus | Space Video Portal</title>
+    <style>
+        /* Immersive Deep Space Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            /* Starry night cosmic canvas background color orientation */
+            background: radial-gradient(circle at center, #1e1b4b 0%, #090514 100%);
+            color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* Ambient floating space nebula effect blocks */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+            top: 20%;
+            left: 15%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.1) 0%, transparent 70%);
+            bottom: 10%;
+            right: 10%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Centered Glassmorphism Space Hub Container Layout Grid */
+        .space-hub {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 850px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            backdrop-filter: blur(20px);
+            padding: 2.5rem;
+            border-radius: 28px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 
+                        0 0 40px rgba(99, 102, 241, 0.2);
+            text-align: center;
+        }
+
+        .space-title h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(to right, #a5b4fc, #f472b6, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .space-title p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Dynamic Cosmic Video Player Slot frame structure */
+        .video-viewport {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            border-radius: 16px;
+            border: 2px solid rgba(165, 180, 252, 0.2);
+            overflow: hidden;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.9);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-viewport iframe, .video-viewport video {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .no-video-state {
+            color: #64748b;
+            font-size: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        /* Input Controls Panel Grid */
+        .input-panel {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 16px;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #fbbf24;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        input[type="url"] {
+            flex: 1;
+            padding: 0.85rem 1.2rem;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        input[type="url"]:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+        }
+
+        .space-btn {
+            padding: 0.85rem 1.5rem;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .space-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(124, 58, 237, 0.4);
+        }
+
+        /* Share Link Visual Output Result Field */
+        .share-link-box {
+            margin-top: 1.5rem;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px dashed rgba(99, 102, 241, 0.4);
+            padding: 1rem;
+            border-radius: 12px;
+            display: none;
+        }
+
+        .url-text-container {
+            font-family: monospace;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0.6rem;
+            border-radius: 8px;
+            color: #a5b4fc;
+            word-break: break-all;
+            margin: 0.5rem 0;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Centered Cosmic App Panel Box Framework -->
+    <div class="space-hub">
+        
+        <div class="space-title">
+            <h1>🌌 Cosmic Campus Video Hub</h1>
+            <p>Paste a link to your college video to embed it in deep space and create an instant share URL for friends.</p>
+        </div>
+
+        <!-- Video Target Interface Canvas Block -->
+        <div class="video-viewport" id="videoContainer">
+            <div class="no-video-state" id="emptyState">
+                <span>🛸 No Star System Feed Active</span>
+                <span style="font-size: 0.8rem; color: #475569;">Paste a video source URL link down below to initialize transmission...</span>
+            </div>
+        </div>
+
+        <!-- Generation Configuration Station Panel -->
+        <div class="input-panel">
+            <form onsubmit="generateSpaceLink(event)">
+                <div class="form-group">
+                    <label for="videoUrl">College Video Resource Link (YouTube or Direct Video URL)</label>
+                    <div class="input-row">
+                        <input type="url" id="videoUrl" placeholder="https://youtube.com..." required>
+                        <button type="submit" class="space-btn">Launch Stream 🚀</button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Dynamic URL Copy Board Area -->
+            <div class="share-link-box" id="shareBox">
+                <p style="font-size: 0.85rem; color: #f472b6; font-weight: bold; text-align: center;">✓ Teleportation Link Generated successfully!</p>
+                <div class="url-text-container" id="generatedLinkDisplay"></div>
+                <button class="space-btn" style="width: 100%; background: #fbbf24; color: #111;" onclick="copyCosmicLink()">
+                    📋 Copy Space URL Link to Clipboard
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Execution Engine Script Properties Integration -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            // Check if page loaded with an active shared URL string link query parameters parameter format
+            const urlParams = new URLSearchParams(window.location.search);
+            const sharedVideoUrl = urlParams.get('v');
+
+            if (sharedVideoUrl) {
+                renderVideoFeed(decodeURIComponent(sharedVideoUrl));
+                // Set the input field string to make sharing it onwards super accessible
+                document.getElementById('videoUrl').value = decodeURIComponent(sharedVideoUrl);
+            }
+        });
+
+        // Processing string parameters matching standard parsing metrics
+        function renderVideoFeed(url) {
+            const container = document.getElementById('videoContainer');
+            
+            // Checking if link belongs to standard YouTube variations
+            if (url.includes('://youtube.com') || url.includes('youtu.be/')) {
+                let videoId = '';
+                if(url.includes('://youtube.com')) {
+                    const searchParams = new URL(url).searchParams;
+                    videoId = searchParams.get('v');
+                } else {
+                    videoId = url.split('/').pop();
+                }
+                
+                if (videoId) {
+                    container.innerHTML = `<iframe src="https://youtube.com{videoId}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+                    return;
+                }
+            }
+
+            // Default fallback assumption is direct MP4/WebM video stream link routing
+            container.innerHTML = `<video controls autoplay loop src="${url}"></video>`;
+        }
+
+        // Assembles and displays sharing parameters
+        function generateSpaceLink(event) {
+            event.preventDefault();
+            
+            const rawInputUrl = document.getElementById('videoUrl').value;
+            renderVideoFeed(rawInputUrl);
+
+            // Constructing global shared parameter tags
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusConnect | Neon Party & Event Share Hub</title>
+    <style>
+        /* Immersive Cyber Punk Nightlife Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at center, #1e0b36 0%, #07020d 100%);
+            color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Glowing ambient lighting filters behind content panels */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, transparent 70%);
+            top: 15%;
+            left: 20%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.15) 0%, transparent 70%);
+            bottom: 15%;
+            right: 20%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Twin Column Grid Layout Wrapper */
+        .app-wrapper {
+            position: relative;
+            z-index: 10;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            width: 100%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        @media (max-width: 868px) {
+            .app-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Glassmorphism Panel Structures */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: 0 20px 45px rgba(0,0,0,0.6);
+        }
+
+        .panel-heading {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 0.5rem;
+        }
+
+        .panel-heading h2 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #ec4899, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #d8b4fe;
+            margin-bottom: 0.4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            border-color: #ec4899;
+            box-shadow: 0 0 10px rgba(236, 72, 153, 0.3);
+        }
+
+        /* Action Control Buttons */
+        .neon-btn {
+            width: 100%;
+            padding: 0.9rem;
+            background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .neon-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 20px rgba(236, 72, 153, 0.4);
+        }
+
+        /* Dynamic Share Code Visualizer Block */
+        .share-out-container {
+            margin-top: 1.5rem;
+            background: rgba(236, 72, 153, 0.08);
+            border: 1px dashed rgba(236, 72, 153, 0.4);
+            padding: 1rem;
+            border-radius: 12px;
+            display: none;
+            text-align: center;
+        }
+
+        .url-box-display {
+            font-family: monospace;
+            background: rgba(0,0,0,0.5);
+            padding: 0.6rem;
+            border-radius: 8px;
+            color: #f472b6;
+            font-size: 0.8rem;
+            word-break: break-all;
+            margin: 0.5rem 0;
+        }
+
+        /* Right Side Invitation Card Visual Layout */
+        .ticket-badge {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .display-card-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .card-metric-block {
+            background: rgba(0,0,0,0.3);
+            padding: 0.85rem 1.2rem;
+            border-radius: 12px;
+            border-left: 3px solid #ec4899;
+        }
+
+        .card-metric-block small {
+            display: block;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.2rem;
+        }
+
+        .card-metric-block strong {
+            font-size: 1.1rem;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Central Two-Column Application Wrapper Block -->
+    <div class="app-wrapper">
+        
+        <!-- Column 1: Invitation Setup Form -->
+        <div class="glass-panel">
+            <div class="panel-heading">
+                <h2>🎉 Host a Campus Party / Event</h2>
+            </div>
+            
+            <form onsubmit="generatePartyLink(event)">
+                <div class="form-group">
+                    <label for="evtName">Party / Event Title</label>
+                    <input type="text" id="evtName" placeholder="e.g., Neon Cult Fresher's Night" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="evtVenue">Campus / City Venue Address</label>
+                    <input type="text" id="evtVenue" placeholder="e.g., Audi-2, Technical Campus Gymkhana" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="evtDate">Date of Event</label>
+                        <input type="date" id="evtDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="evtTime">Gate Entry Time</label>
+                        <input type="time" id="evtTime" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="evtTicketUrl">Booking/Ticket External Link (Optional)</label>
+                    <input type="url" id="evtTicketUrl" placeholder="https://bookmyshow.com or Amazon URL">
+                </div>
+
+                <button type="submit" class="neon-btn">🔗 Generate Dynamic Event Link</button>
+            </form>
+
+            <!-- URL Copy Dashboard Panel Drawer -->
+            <div class="share-out-container" id="shareBox">
+                <p style="font-size:0.85rem; color:#f472b6; font-weight:bold;">✓ Event Invitation Encoded Successfully!</p>
+                <div class="url-box-display" id="linkDisplayArea"></div>
+                <button class="neon-btn" style="background:#f59e0b; color:#111; margin-top:0.5rem;" onclick="copyEventUrlLink()">
+                    📋 Copy Invitation Link to Clipboard
+                </button>
+            </div>
+        </div>
+
+        <!-- Column 2: Synchronized Interactive Invitation Card Preview -->
+        <div class="glass-panel" style="border-top: 4px solid #f59e0b;">
+            <div class="panel-heading" style="display:flex; justify-content:space-between; align-items:center;">
+                <h2 style="background: linear-gradient(to right, #f59e0b, #ec4899); -webkit-background-clip: text;">✨ Invitation Pass View</h2>
+                <span id="loadStateBadge" class="ticket-badge" style="background:rgba(148,163,184,0.15); color:#94a3b8;">Default Sandbox</span>
+            </div>
+
+            <div class="display-card-grid">
+                <div class="card-metric-block" style="border-left-color: #f59e0b;">
+                    <small>Event Gathering Title</small>
+                    <strong id="cardTitle">College Sunset Jam Session</strong>
+                </div>
+                <div class="card-metric-block">
+                    <small>Staged Venue Location</small>
+                    <strong id="cardVenue">Open Air Theatre (OAT), Main Campus</strong>
+                </div>
+                
+                <div class="form-row">
+                    <div class="card-metric-block" style="border-left-color: #a855f7;">
+                        <small>Target Date</small>
+                        <strong id="cardDate">2026-10-24</strong>
+                    </div>
+
+
